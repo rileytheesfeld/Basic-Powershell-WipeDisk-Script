@@ -2,11 +2,7 @@
 # WARNING: This script will PERMANENTLY erase all data on the selected disk.
 
 function Get-DiskSelection {
-    # List all available disks with some information
-    $disks = Get-Disk | Select-Object Number, FriendlyName, OperationalStatus, Size, @{Name="IsRemovable";Expression={($_.BusType -eq 'USB')}}
-    $disks | Format-Table -AutoSize
-    
-    # Prompt user to select the disk to sanitize
+     # Prompt user to select the disk to sanitize
     $diskNumber = Read-Host "Enter the disk number to sanitize (e.g., 0, 1, 2)"
     $selectedDisk = $disks | Where-Object { $_.Number -eq $diskNumber }
     
